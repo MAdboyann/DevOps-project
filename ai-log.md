@@ -126,3 +126,16 @@ Provided structured detection, response, and recovery steps.
 To ensure clarity and practical usability in real incidents.
 
 ---
+### Prompt
+"Create a simple AWS architecture diagram for a multi-tenant application with VPC, public and private subnets, EC2 instances for company, bureau, and employee, RDS in private subnet, S3 storage, IAM, CloudWatch, SNS, and CI/CD pipeline using GitHub Actions. Keep it minimal and clean. Do not include WAF or Route53."
+
+### AI Response Summary
+Generated a clean AWS architecture diagram showing VPC, EC2 instances per tenant, RDS, S3, IAM, monitoring services, and CI/CD pipeline.
+
+### What I Modified
+- Removed unnecessary components like WAF and Route53
+- Simplified layout to match actual Terraform implementation
+- Renamed system to "my-app"
+
+### Reasoning
+To ensure the diagram accurately reflects the implemented infrastructure and avoids confusion during evaluation.

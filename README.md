@@ -144,3 +144,83 @@ There will be a runbook for the management of critical issues, including a runbo
 - app/ -> Docker Application
 - .github/workflows/deploy.yml -> CI/CD Process
 - docs/ -> Architecture & Runbook
+
+## UK GDPR Compliance Considerations
+
+### 1. AWS-Native Controls for Protecting Personal Information
+
+To make sure i handle information like employee personal details and banking information securely i use the following controls that are built into Amazon Web Services:
+
+- **Encryption when Data is Stored**
+
+i set up RDS and S3 to use encryption so that the data i store is protected
+
+- **Encryption when Data is Transferred**
+
+i design all communication between services to use HTTPS/TLS so that data is protected when it is being transferred
+
+- **Identity and Access Management**
+
+i use role-based access control and make sure each role has the least amount of privilege necessary
+
+i have separate roles for the Company, Bureau and Employee
+
+- **Secrets Management**
+
+i store database credentials in the AWS SSM Parameter Store, which's a secure way to store sensitive information
+
+i do not hardcode secrets into our code
+
+- **Network Isolation**
+
+i deploy RDS in private subnets
+
+i restrict access using security groups so only EC2 is allowed to access the data
+
+- **Monitoring and Logging**
+
+i use CloudWatch to monitor and get alerts
+
+Our logs support audit and compliance requirements
+
+These controls help us make sure that sensitive information is kept confidential is not changed without permission and is only accessed by people who are allowed to.
+
+---
+
+### 2. Data Residency in the UK and EU
+
+Our current infrastructure is set up in the **us-east-1 region** for development and demonstration purposes.
+
+For UK GDPR compliance in a production environment:
+
+- i would set up the infrastructure in a **UK or EU region, like eu-west-2 in London**
+
+- i would restrict all services, including EC2, RDS and S3 to that region
+
+- i would not allow data to be transferred between regions unless it is explicitly required
+
+This way i make sure that sensitive information stays within the UK or EU when it is required to.
+
+---
+
+### 3. Right to Erasure, which Means Deleting Data
+
+To support the GDPR "Right to Erasure" our system is designed to allow us to completely remove data:
+
+- **Deleting Data from the Database**
+
+i can delete all user data using a filter based on the tenant_id
+
+- **Removing Data from S3**
+
+i user-related documents from S3 including old versions of the documents
+
+- **Revoking Access**
+
+i take away IAM access, for the user or tenant
+
+- **Logging Audit Information**
+
+i log all deletion actions so that i can trace what happened and comply with regulations
+
+This ensures that i can completely remove user data from all services.
