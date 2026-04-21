@@ -31,7 +31,7 @@ resource "aws_iam_policy" "s3_policy" {
                     "s3:GetObject",
                     "s3:PutObject"
                 ]
-                resource = "${aws_s3_bucket.documents.arn}/*"
+                Resource = "${aws_s3_bucket.documents.arn}/*"
             }
         ]
     })
